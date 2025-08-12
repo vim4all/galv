@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Мідні Дива — магазин унікальних подарунків з міді: електроформування квітів, листя, 3D-друкованих моделей та прикрас ручної роботи. Ідеальний сувенір для коханих, друзів та колег." />
+  <meta name="keywords" content="мідні подарунки, електроформування, 3D-друк, сувеніри ручної роботи, покриття міддю, мідне листя, мідні квіти, copper electroforming, ексклюзивні подарунки, мідний декор" />
+  <meta name="author" content="Мідні Дива" />
+  <title>Мідні Дива — Унікальні Подарунки з Міді</title>
+  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-color: #c16e39;
+      --accent-color: #fff8f0;
+      --bg-color: #1e1e1e;
+    }
+    body {margin:0;font-family:'Montserrat',sans-serif;background:var(--bg-color);color:#fefefe;overflow-x:hidden;}
+    header {background:linear-gradient(135deg,#2a2a2a,#3c3c3c);padding:2rem;text-align:center;}
+    header h1 {font-family:'Marck Script',cursive;font-size:3rem;color:var(--main-color);margin-bottom:0.5rem;}
+    header p {font-size:1.2rem;color:#ddd;}
+    .section {padding:3rem 2rem;max-width:1200px;margin:auto;}
+    .hero {background:url('https://images.unsplash.com/photo-1617196037244-cdad405ffb2f') center/cover no-repeat;color:white;text-shadow:1px 1px 5px black;padding:6rem 2rem;text-align:center;}
+    .hero h2 {font-size:2.5rem;margin-bottom:1rem;}
+    .btn {background:var(--main-color);color:white;padding:0.8rem 1.5rem;border:none;font-size:1rem;cursor:pointer;border-radius:5px;transition:background 0.3s ease;}
+    .btn:hover {background:#a7542d;}
+    .gallery {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin-top:2rem;}
+    .gallery img {width:100%;height:300px;object-fit:cover;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,0.4);transition:transform 0.3s;}
+    .gallery img:hover {transform:scale(1.05);}
+    footer {background:#111;color:#aaa;text-align:center;padding:2rem;}
+    .fade-in {opacity:0;transform:translateY(20px);transition:opacity 1s ease-out,transform 1s ease-out;}
+    .fade-in.visible {opacity:1;transform:translateY(0);}
+    .faq {background:#2b2b2b;padding:2rem;border-radius:10px;margin-top:2rem;}
+    .faq h3 {color:var(--main-color);}
+    .faq p {color:#ddd;}
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Мідні Дива</h1>
+  <p>Унікальні подарунки з міддю: ручна робота з 3D-друку, квітів, листя і природних форм</p>
+</header>
+
+<section class="hero">
+  <h2>Подаруйте емоції, що не іржавіють</h2>
+  <p>Мідні сувеніри — це не просто подарунки, а символи вічності, тепла та турботи.</p>
+  <button class="btn" onclick="scrollToSection('about')">Дізнатися більше</button>
+</section>
+
+<section id="about" class="section fade-in">
+  <h2>Про нас</h2>
+  <article>
+    <p><strong>«Мідні Дива»</strong> — це поєднання мистецтва та технологій. Ми працюємо в техніці <strong>електроформування</strong>, яка дозволяє покривати міддю як 3D-друковані об'єкти, так і реальні рослини — квіти, листя, жолуді, гілочки.</p>
+    <p>Наші роботи зберігають <strong>натуральну текстуру</strong> та створюють ефект справжньої скульптури, яка не боїться часу.</p>
+    <h3>Чому обирають нас?</h3>
+    <ul>
+      <li>✔ 100% ручна робота</li>
+      <li>✔ Ексклюзивність кожного виробу</li>
+      <li>✔ Можливість замовлення за індивідуальним дизайном</li>
+      <li>✔ Використання екологічних матеріалів</li>
+    </ul>
+  </article>
+</section>
+
+<section class="section fade-in">
+  <h2>Наші роботи</h2>
+  <p>Кожен виріб ми створюємо з любов'ю — від перших етапів підготовки до фінального полірування. Це може бути як ніжна троянда, покрита міддю, так і складна 3D-друкована фігурка.</p>
+
+  <div class="gallery">
+    <figure>
+      <img src="rose.gif" alt="Квітка в мідному покритті — сувенір ручної роботи">
+      <figcaption>Ніжна жива троянда, покрита міддю методом електроформування. Зберігає природну форму та текстуру.</figcaption>
+    </figure>
+
+    <figure>
+      <img src="rose.gif" alt="Мідне листя — збереження природи у металі">
+      <figcaption>Справжнє листя, зафіксоване у металі, що зберігає його красу на роки. Екологічний декор для дому.</figcaption>
+    </figure>
+
+    <figure>
+      <img src="rose.gif" alt="3D-друкована мідна фігурка">
+      <figcaption>3D-друкована фігурка з мідним покриттям — сучасне мистецтво у поєднанні з ручною обробкою.</figcaption>
+    </figure>
+
+    <figure>
+      <img src="rose.gif" alt="Мідний декор для інтер'єру">
+      <figcaption>Унікальний мідний декор, створений на замовлення. Додає розкоші та тепла інтер'єру.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section fade-in">
+  <h2>Як зробити замовлення?</h2>
+  <p>Щоб отримати свій унікальний мідний сувенір, напишіть нам у будь-який зручний спосіб, опишіть бажаний виріб, і ми підготуємо пропозицію.</p>
+  <p><strong>Термін виготовлення</strong> залежить від складності — від 3 до 10 днів.</p>
+  <button class="btn" onclick="scrollToSection('contact')">Зв’язатися з нами</button>
+</section>
+
+<section id="faq" class="section fade-in faq">
+  <h2>Часті запитання</h2>
+  <h3>Скільки коштують мідні сувеніри?</h3>
+  <p>Ціна залежить від розміру, складності та матеріалів. Середня вартість — від 800 до 3000 грн.</p>
+  <h3>Чи можна зробити виріб на основі моєї 3D-моделі?</h3>
+  <p>Так! Ми приймаємо готові STL-файли або створюємо модель з нуля.</p>
+  <h3>Чи доставляєте за кордон?</h3>
+  <p>Так, відправляємо замовлення по Україні та в інші країни.</p>
+</section>
+
+<section id="contact" class="section fade-in">
+  <h2>Контакти</h2>
+  <form name="contact" method="POST" data-netlify="true">
+    <div>
+      <label for="name">Ім’я:</label><br>
+      <input type="text" id="name" name="name" required />
+    </div>
+    <div>
+      <label for="email">Електронна пошта:</label><br>
+      <input type="email" id="email" name="email" required />
+    </div>
+    <div>
+      <label for="message">Повідомлення:</label><br>
+      <textarea id="message" name="message" rows="5" required></textarea>
+    </div>
+    <button class="btn" type="submit">Надіслати</button>
+  </form>
+
+  <address>
+    <p><strong>Мідні Дива</strong></p>
+    <p>Чернігів, Україна</p>
+    <p>Email: <a href="mailto:contact@midnidiva.ua">contact@midnidiva.ua</a></p>
+    <p>Instagram: <a href="https://instagram.com/midni.diva" target="_blank">@midni.diva</a></p>
+    <p>Телефон: +380 97 123 45 67</p>
+  </address>
+
+  <iframe src="https://maps.google.com/maps?q=Київ,%20Україна&t=&z=13&ie=UTF8&iwloc=&output=embed" title="Наша майстерня" loading="lazy" allowfullscreen></iframe>
+</section>
+
+<footer>
+  <p>&copy; 2025 Мідні Дива — Унікальні Подарунки з Міді | Усі права захищено.</p>
+</footer>
+
+<script>
+  function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  }
+  const fadeIns = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  fadeIns.forEach(el => observer.observe(el));
+</script>
+
+<!-- JSON-LD FAQ Schema for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Скільки коштують мідні сувеніри?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ціна залежить від розміру, складності та матеріалів. Середня вартість — від 800 до 3000 грн."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи можна зробити виріб на основі моєї 3D-моделі?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Так! Ми приймаємо готові STL-файли або створюємо модель з нуля."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи доставляєте за кордон?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Так, ми відправляємо замовлення по Україні та в інші країни."
+      }
+    }
+  ]
+}
+</script>
+
+</body>
+</html>
