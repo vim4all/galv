@@ -3,186 +3,825 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Мідні Дива — магазин унікальних подарунків з міді: електроформування квітів, листя, 3D-друкованих моделей та прикрас ручної роботи. Ідеальний сувенір для коханих, друзів та колег." />
-  <meta name="keywords" content="мідні подарунки, електроформування, 3D-друк, сувеніри ручної роботи, покриття міддю, мідне листя, мідні квіти, copper electroforming, ексклюзивні подарунки, мідний декор" />
+  <meta name="description" content="Мідні Дива — магазин унікальних подарунків з міді: електроформування квітів, листя, 3D-друкованих моделей та прикрас ручної роботи." />
+  <meta name="keywords" content="мідні подарунки, електроформування, 3D-друк, сувеніри ручної роботи, покриття міддю, мідне листя, мідні квіти, copper electroforming" />
   <meta name="author" content="Мідні Дива" />
+  <meta property="og:title" content="Мідні Дива — Унікальні Подарунки з Міді" />
+  <meta property="og:description" content="Ексклюзивні мідні сувеніри ручної роботи — квіти, листя, 3D-фігурки з мідним покриттям." />
+  <meta property="og:type" content="website" />
   <title>Мідні Дива — Унікальні Подарунки з Міді</title>
-  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --main-color: #c16e39;
-      --accent-color: #fff8f0;
-      --bg-color: #1e1e1e;
+      --copper: #c47430;
+      --copper-dark: #9b5a22;
+      --copper-light: #e8a87c;
+      --copper-glow: rgba(196,116,48,0.3);
+      --gold: #c9a84c;
+      --bg: #1a1614;
+      --surface: #252220;
+      --surface-2: #2e2a28;
+      --surface-3: #3a3532;
+      --text: #f5f0eb;
+      --text-muted: #a09890;
+      --border: rgba(196,116,48,0.2);
+      --radius: 12px;
+      --radius-lg: 20px;
+      --shadow: 0 8px 32px rgba(0,0,0,0.4);
+      --t: 0.3s ease;
     }
-    body {margin:0;font-family:'Montserrat',sans-serif;background:var(--bg-color);color:#fefefe;overflow-x:hidden;}
-    header {background:linear-gradient(135deg,#2a2a2a,#3c3c3c);padding:2rem;text-align:center;}
-    header h1 {font-family:'Marck Script',cursive;font-size:3rem;color:var(--main-color);margin-bottom:0.5rem;}
-    header p {font-size:1.2rem;color:#ddd;}
-    .section {padding:3rem 2rem;max-width:1200px;margin:auto;}
-    .hero {background:url('https://images.unsplash.com/photo-1617196037244-cdad405ffb2f') center/cover no-repeat;color:white;text-shadow:1px 1px 5px black;padding:6rem 2rem;text-align:center;}
-    .hero h2 {font-size:2.5rem;margin-bottom:1rem;}
-    .btn {background:var(--main-color);color:white;padding:0.8rem 1.5rem;border:none;font-size:1rem;cursor:pointer;border-radius:5px;transition:background 0.3s ease;}
-    .btn:hover {background:#a7542d;}
-    .gallery {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin-top:2rem;}
-    .gallery img {width:100%;height:300px;object-fit:cover;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,0.4);transition:transform 0.3s;}
-    .gallery img:hover {transform:scale(1.05);}
-    footer {background:#111;color:#aaa;text-align:center;padding:2rem;}
-    .fade-in {opacity:0;transform:translateY(20px);transition:opacity 1s ease-out,transform 1s ease-out;}
-    .fade-in.visible {opacity:1;transform:translateY(0);}
-    .faq {background:#2b2b2b;padding:2rem;border-radius:10px;margin-top:2rem;}
-    .faq h3 {color:var(--main-color);}
-    .faq p {color:#ddd;}
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1.2rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: var(--t);
+    }
+    .nav.scrolled {
+      background: rgba(26,22,20,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 2rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+    }
+    .nav-logo {
+      font-family: 'Marck Script', cursive;
+      font-size: 1.9rem; color: var(--copper); text-decoration: none;
+    }
+    .nav-links { display: flex; list-style: none; gap: 2rem; }
+    .nav-links a {
+      color: var(--text-muted); text-decoration: none;
+      font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; transition: var(--t);
+    }
+    .nav-links a:hover { color: var(--copper); }
+    .nav-cta {
+      background: var(--copper) !important; color: white !important;
+      padding: 0.45rem 1.2rem; border-radius: 50px;
+    }
+    .nav-cta:hover { background: var(--copper-dark) !important; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); transition: var(--t); }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none; position: fixed; inset: 0;
+      background: rgba(26,22,20,0.98); z-index: 999;
+      flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--text); text-decoration: none;
+      font-size: 1.5rem; font-weight: 700; transition: var(--t);
+    }
+    .mobile-menu a:hover { color: var(--copper); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; position: relative; overflow: hidden; padding: 2rem;
+      background: linear-gradient(135deg, #1a1614 0%, #2a1f18 50%, #1a1614 100%);
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 50%, rgba(196,116,48,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 80% 30%, rgba(196,116,48,0.08) 0%, transparent 60%);
+    }
+    .hero-content { position: relative; max-width: 780px; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(196,116,48,0.12); border: 1px solid var(--border);
+      color: var(--copper-light); font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.4rem 1rem; border-radius: 50px; margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Marck Script', cursive;
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      color: var(--copper); line-height: 1.1; margin-bottom: 0.5rem;
+      text-shadow: 0 0 60px rgba(196,116,48,0.4);
+    }
+    .hero-tagline { font-size: clamp(1rem, 3vw, 1.35rem); color: var(--text-muted); margin-bottom: 1.5rem; font-weight: 300; }
+    .hero-desc { font-size: 1rem; color: var(--text-muted); max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.8; }
+    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.9rem 2rem; border-radius: 50px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.95rem; font-weight: 600;
+      cursor: pointer; text-decoration: none; transition: all var(--t); border: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--copper), var(--copper-dark));
+      color: white; box-shadow: 0 4px 20px var(--copper-glow);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px var(--copper-glow); }
+    .btn-outline {
+      background: transparent; color: var(--text); border: 1.5px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--copper); color: var(--copper); transform: translateY(-2px); }
+    .btn-white { background: white; color: var(--copper-dark); }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+
+    .hero-scroll {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      color: var(--text-muted); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--copper), transparent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+
+    /* ── STATS ── */
+    .stats-bar {
+      background: var(--surface);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 2rem;
+    }
+    .stats-grid {
+      display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap;
+      max-width: 900px; margin: auto;
+    }
+    .stat { text-align: center; }
+    .stat-number { font-size: 2.2rem; font-weight: 700; color: var(--copper); line-height: 1; }
+    .stat-label { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.4rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* ── LAYOUT ── */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1200px; margin: auto; }
+    .section-tag {
+      display: inline-block; font-size: 0.73rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--copper); margin-bottom: 0.75rem;
+    }
+    h2.section-title { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 700; color: var(--text); margin-bottom: 1rem; line-height: 1.2; }
+    .section-subtitle { color: var(--text-muted); font-size: 1.05rem; max-width: 600px; line-height: 1.8; }
+    .section-header { margin-bottom: 3.5rem; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-subtitle { margin: 0 auto; }
+
+    /* ── ABOUT ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .about-image { position: relative; border-radius: var(--radius-lg); overflow: hidden; }
+    .about-image img { width: 100%; height: 500px; object-fit: cover; display: block; }
+    .about-badge {
+      position: absolute; bottom: 1.5rem; left: 1.5rem;
+      background: rgba(26,22,20,0.9); backdrop-filter: blur(8px);
+      border: 1px solid var(--border); padding: 1rem 1.5rem; border-radius: var(--radius);
+    }
+    .about-badge strong { display: block; color: var(--copper); font-size: 1.6rem; font-weight: 700; }
+    .about-badge span { color: var(--text-muted); font-size: 0.8rem; }
+    .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 2.5rem; }
+    .feature-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.4rem; transition: var(--t);
+    }
+    .feature-card:hover { border-color: var(--copper); transform: translateY(-3px); }
+    .feature-icon { font-size: 1.7rem; margin-bottom: 0.6rem; display: block; }
+    .feature-card h4 { font-size: 0.92rem; font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
+    .feature-card p { font-size: 0.83rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── PROCESS ── */
+    #process { background: var(--surface); }
+    .process-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 2rem; }
+    .process-step { text-align: center; padding: 2rem 1.5rem; }
+    .step-num {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--copper), var(--copper-dark));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; font-weight: 700; color: white;
+      margin: 0 auto 1.5rem; box-shadow: 0 4px 20px var(--copper-glow);
+    }
+    .process-step h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.75rem; }
+    .process-step p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+
+    /* ── GALLERY ── */
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 1.5rem; }
+    .gallery-card { position: relative; border-radius: var(--radius-lg); overflow: hidden; background: var(--surface); cursor: pointer; }
+    .gallery-card img { width: 100%; height: 320px; object-fit: cover; display: block; transition: transform 0.5s ease; }
+    .gallery-card:hover img { transform: scale(1.08); }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(26,22,20,0.95) 0%, rgba(26,22,20,0.1) 55%, transparent 100%);
+      display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem;
+    }
+    .gallery-tag {
+      display: inline-block; background: var(--copper); color: white;
+      font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+      padding: 0.22rem 0.65rem; border-radius: 50px; margin-bottom: 0.6rem; width: fit-content;
+    }
+    .gallery-overlay h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
+    .gallery-overlay p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials { background: var(--surface); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 1.5rem; }
+    .testimonial-card {
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 2rem; transition: var(--t);
+    }
+    .testimonial-card:hover { border-color: var(--copper); transform: translateY(-4px); box-shadow: var(--shadow); }
+    .t-quote { font-size: 3rem; color: var(--copper); opacity: 0.35; line-height: 1; font-family: Georgia,serif; }
+    .stars { color: var(--gold); font-size: 0.9rem; margin: 0.5rem 0 1rem; }
+    .t-text { color: var(--text-muted); font-size: 0.93rem; line-height: 1.8; margin-bottom: 1.5rem; font-style: italic; }
+    .t-author { display: flex; align-items: center; gap: 0.75rem; }
+    .t-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--copper), var(--copper-dark));
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; color: white; font-size: 1rem; flex-shrink: 0;
+    }
+    .t-name { font-weight: 700; font-size: 0.88rem; color: var(--text); }
+    .t-loc { font-size: 0.78rem; color: var(--text-muted); }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--copper-dark), #7a3d10);
+      text-align: center; padding: 5rem 2rem; position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .cta-banner h2 { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 700; color: white; margin-bottom: 1rem; position: relative; }
+    .cta-banner p { font-size: 1.05rem; color: rgba(255,255,255,0.8); max-width: 500px; margin: 0 auto 2rem; position: relative; }
+
+    /* ── FAQ ── */
+    .faq-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+    .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: var(--t); }
+    .faq-item.open { border-color: var(--copper); }
+    .faq-question { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; cursor: pointer; user-select: none; }
+    .faq-question span { font-weight: 600; font-size: 0.93rem; color: var(--text); }
+    .faq-icon {
+      width: 28px; height: 28px; border-radius: 50%; background: var(--surface-3);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--copper); font-size: 1.2rem; transition: var(--t); flex-shrink: 0;
+    }
+    .faq-item.open .faq-icon { background: var(--copper); color: white; transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-item.open .faq-answer { max-height: 200px; }
+    .faq-answer p { padding: 0 1.5rem 1.25rem; color: var(--text-muted); font-size: 0.88rem; line-height: 1.8; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--surface); }
+    .contact-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; align-items: start; }
+    .contact-form { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2.5rem; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label { display: block; font-size: 0.78rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.07em; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; background: var(--surface-3); border: 1.5px solid var(--border);
+      border-radius: var(--radius); padding: 0.85rem 1rem; color: var(--text);
+      font-family: 'Montserrat', sans-serif; font-size: 0.9rem; transition: var(--t); outline: none;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      border-color: var(--copper); box-shadow: 0 0 0 3px var(--copper-glow);
+    }
+    .form-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23a09890' d='M1 1l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .contact-info { display: flex; flex-direction: column; gap: 1.25rem; }
+    .contact-card {
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.25rem 1.5rem;
+      display: flex; align-items: center; gap: 1rem; transition: var(--t);
+    }
+    .contact-card:hover { border-color: var(--copper); }
+    .cc-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: rgba(196,116,48,0.12); display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+    .cc-body h4 { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.25rem; }
+    .cc-body a, .cc-body p { color: var(--text); font-size: 0.9rem; text-decoration: none; font-weight: 600; }
+    .cc-body a:hover { color: var(--copper); }
+
+    .social-links { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.25rem; }
+    .social-link {
+      display: flex; align-items: center; gap: 0.4rem;
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: 50px; padding: 0.55rem 1.1rem;
+      color: var(--text-muted); text-decoration: none; font-size: 0.83rem; font-weight: 600; transition: var(--t);
+    }
+    .social-link:hover { border-color: var(--copper); color: var(--copper); }
+
+    .map-wrapper { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); margin-top: 3rem; }
+    .map-wrapper iframe { width: 100%; height: 300px; border: none; display: block; }
+
+    /* ── FOOTER ── */
+    footer { background: #111010; border-top: 1px solid var(--border); padding: 3rem 2rem 2rem; }
+    .footer-grid { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
+    .footer-logo { font-family: 'Marck Script', cursive; font-size: 2rem; color: var(--copper); display: block; margin-bottom: 1rem; }
+    .footer-brand p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.7; max-width: 280px; }
+    .footer-col h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 1.25rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.88rem; transition: var(--t); }
+    .footer-col ul a:hover { color: var(--copper); }
+    .footer-bottom { max-width: 1200px; margin: auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { color: var(--text-muted); font-size: 0.8rem; }
+    .footer-bottom a { color: var(--copper); text-decoration: none; }
+
+    /* ── BACK TO TOP ── */
+    .btt {
+      position: fixed; bottom: 2rem; right: 2rem;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--copper); color: white; border: none; cursor: pointer;
+      font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
+      transition: all var(--t); opacity: 0; pointer-events: none;
+      box-shadow: 0 4px 20px var(--copper-glow); z-index: 100;
+    }
+    .btt.visible { opacity: 1; pointer-events: all; }
+    .btt:hover { transform: translateY(-3px); background: var(--copper-dark); }
+
+    /* ── ANIMATIONS ── */
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .about-image { order: -1; }
+      .about-image img { height: 300px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .stats-grid { gap: 2rem; }
+      section { padding: 3.5rem 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .hero-buttons { flex-direction: column; align-items: center; }
+      .btn { width: 100%; max-width: 280px; justify-content: center; }
+      .gallery-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Мідні Дива</h1>
-  <p>Унікальні подарунки з міддю: ручна робота з 3D-друку, квітів, листя і природних форм</p>
-</header>
+<!-- NAV -->
+<nav class="nav" id="navbar">
+  <a href="#home" class="nav-logo">Мідні Дива</a>
+  <ul class="nav-links">
+    <li><a href="#about">Про нас</a></li>
+    <li><a href="#process">Процес</a></li>
+    <li><a href="#gallery">Роботи</a></li>
+    <li><a href="#testimonials">Відгуки</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact" class="nav-cta">Замовити</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
 
-<section class="hero">
-  <h2>Подаруйте емоції, що не іржавіють</h2>
-  <p>Мідні сувеніри — це не просто подарунки, а символи вічності, тепла та турботи.</p>
-  <button class="btn" onclick="scrollToSection('about')">Дізнатися більше</button>
-</section>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMenu()">Про нас</a>
+  <a href="#process" onclick="closeMenu()">Процес</a>
+  <a href="#gallery" onclick="closeMenu()">Роботи</a>
+  <a href="#testimonials" onclick="closeMenu()">Відгуки</a>
+  <a href="#faq" onclick="closeMenu()">FAQ</a>
+  <a href="#contact" onclick="closeMenu()">Замовити</a>
+</div>
 
-<section id="about" class="section fade-in">
-  <h2>Про нас</h2>
-  <article>
-    <p><strong>«Мідні Дива»</strong> — це поєднання мистецтва та технологій. Ми працюємо в техніці <strong>електроформування</strong>, яка дозволяє покривати міддю як 3D-друковані об'єкти, так і реальні рослини — квіти, листя, жолуді, гілочки.</p>
-    <p>Наші роботи зберігають <strong>натуральну текстуру</strong> та створюють ефект справжньої скульптури, яка не боїться часу.</p>
-    <h3>Чому обирають нас?</h3>
-    <ul>
-      <li>✔ 100% ручна робота</li>
-      <li>✔ Ексклюзивність кожного виробу</li>
-      <li>✔ Можливість замовлення за індивідуальним дизайном</li>
-      <li>✔ Використання екологічних матеріалів</li>
-    </ul>
-  </article>
-</section>
-
-<section class="section fade-in">
-  <h2>Наші роботи</h2>
-  <p>Кожен виріб ми створюємо з любов'ю — від перших етапів підготовки до фінального полірування. Це може бути як ніжна троянда, покрита міддю, так і складна 3D-друкована фігурка.</p>
-
-  <div class="gallery">
-    <figure>
-      <img src="rose.gif" alt="Квітка в мідному покритті — сувенір ручної роботи">
-      <figcaption>Ніжна жива троянда, покрита міддю методом електроформування. Зберігає природну форму та текстуру.</figcaption>
-    </figure>
-
-    <figure>
-      <img src="rose.gif" alt="Мідне листя — збереження природи у металі">
-      <figcaption>Справжнє листя, зафіксоване у металі, що зберігає його красу на роки. Екологічний декор для дому.</figcaption>
-    </figure>
-
-    <figure>
-      <img src="rose.gif" alt="3D-друкована мідна фігурка">
-      <figcaption>3D-друкована фігурка з мідним покриттям — сучасне мистецтво у поєднанні з ручною обробкою.</figcaption>
-    </figure>
-
-    <figure>
-      <img src="rose.gif" alt="Мідний декор для інтер'єру">
-      <figcaption>Унікальний мідний декор, створений на замовлення. Додає розкоші та тепла інтер'єру.</figcaption>
-    </figure>
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-content">
+    <span class="hero-badge">✦ Ручна робота · Електроформування ✦</span>
+    <h1>Мідні Дива</h1>
+    <p class="hero-tagline">Унікальні подарунки, що не іржавіють</p>
+    <p class="hero-desc">Ми перетворюємо живі квіти, листя та 3D-моделі на вічні мідні скульптури — зберігаючи кожну деталь натуральної текстури.</p>
+    <div class="hero-buttons">
+      <button class="btn btn-primary" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">Переглянути роботи</button>
+      <button class="btn btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Зробити замовлення</button>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Гортати</span>
   </div>
 </section>
 
-<section class="section fade-in">
-  <h2>Як зробити замовлення?</h2>
-  <p>Щоб отримати свій унікальний мідний сувенір, напишіть нам у будь-який зручний спосіб, опишіть бажаний виріб, і ми підготуємо пропозицію.</p>
-  <p><strong>Термін виготовлення</strong> залежить від складності — від 3 до 10 днів.</p>
-  <button class="btn" onclick="scrollToSection('contact')">Зв’язатися з нами</button>
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-grid">
+    <div class="stat"><div class="stat-number">200+</div><div class="stat-label">Виготовлено виробів</div></div>
+    <div class="stat"><div class="stat-number">100%</div><div class="stat-label">Ручна робота</div></div>
+    <div class="stat"><div class="stat-number">3–10</div><div class="stat-label">Днів виготовлення</div></div>
+    <div class="stat"><div class="stat-number">∞</div><div class="stat-label">Довговічність</div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <span class="section-tag">Про нас</span>
+        <h2 class="section-title">Мистецтво зустрічає технологію</h2>
+        <p class="section-subtitle">«Мідні Дива» — майстерня, де живі рослини та 3D-моделі отримують вічну мідну оболонку методом <strong style="color:var(--copper)">електроформування</strong>. Кожен виріб унікальний — жоден не повторює інший.</p>
+        <div class="features-grid">
+          <div class="feature-card fade-up">
+            <span class="feature-icon">🌸</span>
+            <h4>Живі рослини</h4>
+            <p>Квіти, листя, жолуді — зберігаємо природну красу у вічному металі.</p>
+          </div>
+          <div class="feature-card fade-up">
+            <span class="feature-icon">🖨️</span>
+            <h4>3D-друк</h4>
+            <p>Будь-яка фігурка або дизайн — від STL-файлу до готового сувеніру.</p>
+          </div>
+          <div class="feature-card fade-up">
+            <span class="feature-icon">✨</span>
+            <h4>Ексклюзивність</h4>
+            <p>Кожен виріб — єдиний у своєму роді. Ідеальний подарунок, що запам'ятається.</p>
+          </div>
+          <div class="feature-card fade-up">
+            <span class="feature-icon">🌿</span>
+            <h4>Еко-матеріали</h4>
+            <p>Безпечні та екологічні технології виробництва без компромісів.</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-image fade-up">
+        <img src="rose.gif" alt="Мідна троянда — ексклюзивний подарунок ручної роботи" />
+        <div class="about-badge">
+          <strong>3+ роки</strong>
+          <span>досвіду електроформування</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="faq" class="section fade-in faq">
-  <h2>Часті запитання</h2>
-  <h3>Скільки коштують мідні сувеніри?</h3>
-  <p>Ціна залежить від розміру, складності та матеріалів. Середня вартість — від 800 до 3000 грн.</p>
-  <h3>Чи можна зробити виріб на основі моєї 3D-моделі?</h3>
-  <p>Так! Ми приймаємо готові STL-файли або створюємо модель з нуля.</p>
-  <h3>Чи доставляєте за кордон?</h3>
-  <p>Так, відправляємо замовлення по Україні та в інші країни.</p>
+<!-- PROCESS -->
+<section id="process">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-tag">Як ми працюємо</span>
+      <h2 class="section-title">Від ідеї до вічності</h2>
+      <p class="section-subtitle">Кожен виріб проходить ретельний ручний процес, що поєднує хімію, мистецтво та любов до деталей.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step fade-up">
+        <div class="step-num">1</div>
+        <h3>Підготовка об'єкта</h3>
+        <p>Висушуємо рослини або друкуємо 3D-модель. Наносимо провідне покриття для гальванізації.</p>
+      </div>
+      <div class="process-step fade-up">
+        <div class="step-num">2</div>
+        <h3>Електроформування</h3>
+        <p>Занурюємо у мідний електроліт. Впродовж 24–72 годин метал рівномірно осідає на поверхні.</p>
+      </div>
+      <div class="process-step fade-up">
+        <div class="step-num">3</div>
+        <h3>Шліфування</h3>
+        <p>Вручну обробляємо кожну деталь — знімаємо надлишки, виявляємо текстуру, поліруємо.</p>
+      </div>
+      <div class="process-step fade-up">
+        <div class="step-num">4</div>
+        <h3>Фінальний виріб</h3>
+        <p>Наносимо захисний лак або патину, перевіряємо якість та пакуємо у подарункову упаковку.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="contact" class="section fade-in">
-  <h2>Контакти</h2>
-  <form name="contact" method="POST" data-netlify="true">
-    <div>
-      <label for="name">Ім’я:</label><br>
-      <input type="text" id="name" name="name" required />
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Наші роботи</span>
+      <h2 class="section-title">Кожен виріб — окрема історія</h2>
+      <p class="section-subtitle">Від ніжних квітів до складних 3D-скульптур — вкладаємо душу в кожен об'єкт.</p>
     </div>
-    <div>
-      <label for="email">Електронна пошта:</label><br>
-      <input type="email" id="email" name="email" required />
+    <div class="gallery-grid">
+      <div class="gallery-card fade-up">
+        <img src="rose.gif" alt="Мідна троянда — живий цвіт у вічному металі" loading="lazy" />
+        <div class="gallery-overlay">
+          <span class="gallery-tag">Квіти</span>
+          <h3>Мідна троянда</h3>
+          <p>Жива троянда з міддю — зберігає кожну пелюстку назавжди.</p>
+        </div>
+      </div>
+      <div class="gallery-card fade-up">
+        <img src="rose.gif" alt="Мідне листя — природа у металі" loading="lazy" />
+        <div class="gallery-overlay">
+          <span class="gallery-tag">Листя</span>
+          <h3>Осіннє листя</h3>
+          <p>Справжнє листя, зафіксоване у міді — вічний спомин про природну красу.</p>
+        </div>
+      </div>
+      <div class="gallery-card fade-up">
+        <img src="rose.gif" alt="3D-друкована мідна фігурка на замовлення" loading="lazy" />
+        <div class="gallery-overlay">
+          <span class="gallery-tag">3D-друк</span>
+          <h3>Фігурка на замовлення</h3>
+          <p>Сучасна скульптура за вашим дизайном — від STL до готового виробу.</p>
+        </div>
+      </div>
+      <div class="gallery-card fade-up">
+        <img src="rose.gif" alt="Мідний декор для дому" loading="lazy" />
+        <div class="gallery-overlay">
+          <span class="gallery-tag">Декор</span>
+          <h3>Інтер'єрний декор</h3>
+          <p>Унікальний мідний декор на замовлення — тепло та розкіш у кожному просторі.</p>
+        </div>
+      </div>
     </div>
-    <div>
-      <label for="message">Повідомлення:</label><br>
-      <textarea id="message" name="message" rows="5" required></textarea>
-    </div>
-    <button class="btn" type="submit">Надіслати</button>
-  </form>
-
-  <address>
-    <p><strong>Мідні Дива</strong></p>
-    <p>Чернігів, Україна</p>
-    <p>Email: <a href="mailto:contact@midnidiva.ua">contact@midnidiva.ua</a></p>
-    <p>Instagram: <a href="https://instagram.com/midni.diva" target="_blank">@midni.diva</a></p>
-    <p>Телефон: +380 97 123 45 67</p>
-  </address>
-
-  <iframe src="https://maps.google.com/maps?q=Київ,%20Україна&t=&z=13&ie=UTF8&iwloc=&output=embed" title="Наша майстерня" loading="lazy" allowfullscreen></iframe>
+  </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-tag">Відгуки</span>
+      <h2 class="section-title">Що кажуть наші клієнти</h2>
+      <p class="section-subtitle">Нам довіряють люди, які цінують унікальність і якість.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-up">
+        <div class="t-quote">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="t-text">Замовила мідну троянду на річницю — чоловік був у захваті. Якість неймовірна, виглядає як справжня скульптура. Однозначно рекомендую!</p>
+        <div class="t-author">
+          <div class="t-avatar">О</div>
+          <div><div class="t-name">Олена Коваленко</div><div class="t-loc">Київ</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <div class="t-quote">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="t-text">Замовляв фігурку за власною 3D-моделлю — результат перевершив усі очікування. Дуже уважні до деталей, доставили вчасно. Дякую!</p>
+        <div class="t-author">
+          <div class="t-avatar">М</div>
+          <div><div class="t-name">Максим Бондаренко</div><div class="t-loc">Чернігів</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <div class="t-quote">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="t-text">Подарувала мамі мідне листя — вона зі сльозами на очах дякувала. Такого красивого і незвичного подарунка я ще не бачила. Це справді мистецтво.</p>
+        <div class="t-author">
+          <div class="t-avatar">А</div>
+          <div><div class="t-name">Анна Шевченко</div><div class="t-loc">Харків</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <h2>Готові замовити унікальний подарунок?</h2>
+  <p>Опишіть свою ідею — і ми перетворимо її на вічний мідний виріб. Термін виготовлення від 3 до 10 днів.</p>
+  <button class="btn btn-white" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Написати нам ✉</button>
+</div>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-tag">Запитання</span>
+      <h2 class="section-title">Часті запитання</h2>
+      <p class="section-subtitle">Якщо не знайшли відповідь — напишіть нам напряму.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Скільки коштують мідні сувеніри?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer"><p>Ціна залежить від розміру, складності та матеріалів. Середня вартість — від 800 до 3000 грн. Точна ціна визначається після обговорення деталей замовлення.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Чи можна зробити виріб на основі моєї 3D-моделі?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer"><p>Так! Ми приймаємо готові STL-файли або створюємо 3D-модель з нуля за вашим ескізом чи описом.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Скільки часу займає виготовлення?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer"><p>Терміни залежать від складності — від 3 до 10 робочих днів. Для великих замовлень домовляємося індивідуально.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Чи доставляєте за кордон?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer"><p>Так, відправляємо по всій Україні та в інші країни «Укрпоштою» або іншими перевізниками.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Чи можу я надіслати свою рослину для покриття?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer"><p>Так! Надішліть особливу рослину — наприклад, квітку з весілля. Ми бережно покриємо її міддю і повернемо вам.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Чи вимагає виріб особливого догляду?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer"><p>Мідні вироби мають природну патину. Щоб зберегти блиск, протирайте м'якою сухою тканиною. Уникайте вологи та агресивних хімікатів.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Контакти</span>
+      <h2 class="section-title">Зв'яжіться з нами</h2>
+      <p class="section-subtitle">Опишіть вашу ідею — відповімо протягом 24 годин.</p>
+    </div>
+    <div class="contact-grid">
+      <form class="contact-form" name="contact" method="POST" data-netlify="true">
+        <div class="form-group">
+          <label for="name">Ім'я</label>
+          <input type="text" id="name" name="name" placeholder="Ваше ім'я" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Електронна пошта</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required />
+        </div>
+        <div class="form-group">
+          <label for="type">Тип замовлення</label>
+          <select id="type" name="type">
+            <option value="">Оберіть тип...</option>
+            <option>Мідна квітка або рослина</option>
+            <option>3D-друкована фігурка</option>
+            <option>Декор для дому</option>
+            <option>Інше</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Опис замовлення</label>
+          <textarea id="message" name="message" placeholder="Опишіть, що ви хочете замовити..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Надіслати запит →</button>
+      </form>
+
+      <div class="contact-info">
+        <div class="contact-card">
+          <div class="cc-icon">📧</div>
+          <div class="cc-body"><h4>Email</h4><a href="mailto:contact@midnidiva.ua">contact@midnidiva.ua</a></div>
+        </div>
+        <div class="contact-card">
+          <div class="cc-icon">📞</div>
+          <div class="cc-body"><h4>Телефон</h4><a href="tel:+380971234567">+380 97 123 45 67</a></div>
+        </div>
+        <div class="contact-card">
+          <div class="cc-icon">📍</div>
+          <div class="cc-body"><h4>Місцезнаходження</h4><p>Чернігів, Україна</p></div>
+        </div>
+        <div class="contact-card">
+          <div class="cc-icon">⏱️</div>
+          <div class="cc-body"><h4>Термін виготовлення</h4><p>3–10 робочих днів</p></div>
+        </div>
+        <div>
+          <h4 style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.75rem;font-weight:700;">Соціальні мережі</h4>
+          <div class="social-links">
+            <a href="https://instagram.com/midni.diva" target="_blank" rel="noopener noreferrer" class="social-link">📸 Instagram</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-wrapper">
+      <iframe src="https://maps.google.com/maps?q=Чернігів,%20Україна&t=&z=13&ie=UTF8&iwloc=&output=embed" title="Наша майстерня у Чернігові" loading="lazy" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <p>&copy; 2025 Мідні Дива — Унікальні Подарунки з Міді | Усі права захищено.</p>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="footer-logo">Мідні Дива</span>
+      <p>Унікальні мідні подарунки ручної роботи з Чернігова. Перетворюємо природу та 3D-моделі на вічні скульптури методом електроформування.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Навігація</h4>
+      <ul>
+        <li><a href="#about">Про нас</a></li>
+        <li><a href="#process">Як ми робимо</a></li>
+        <li><a href="#gallery">Наші роботи</a></li>
+        <li><a href="#testimonials">Відгуки</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Контакти</h4>
+      <ul>
+        <li><a href="mailto:contact@midnidiva.ua">contact@midnidiva.ua</a></li>
+        <li><a href="tel:+380971234567">+380 97 123 45 67</a></li>
+        <li><a href="https://instagram.com/midni.diva" target="_blank" rel="noopener noreferrer">@midni.diva</a></li>
+        <li><a href="#contact">Зробити замовлення</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 <a href="#home">Мідні Дива</a> — Усі права захищено.</p>
+    <p>Зроблено з любов'ю у Чернігові, Україна</p>
+  </div>
 </footer>
 
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Вгору">↑</button>
+
 <script>
-  function scrollToSection(id) {
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  const navbar = document.getElementById('navbar');
+  const btt = document.getElementById('btt');
+
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+    btt.classList.toggle('visible', window.scrollY > 400);
+  });
+
+  function toggleMenu() {
+    const h = document.getElementById('hamburger');
+    const m = document.getElementById('mobileMenu');
+    h.classList.toggle('active');
+    m.classList.toggle('open');
+    document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
   }
-  const fadeIns = document.querySelectorAll('.fade-in');
+  function closeMenu() {
+    document.getElementById('hamburger').classList.remove('active');
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1 });
-  fadeIns.forEach(el => observer.observe(el));
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 
-<!-- JSON-LD FAQ Schema for SEO -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
+  "@graph": [
     {
-      "@type": "Question",
-      "name": "Скільки коштують мідні сувеніри?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ціна залежить від розміру, складності та матеріалів. Середня вартість — від 800 до 3000 грн."
-      }
+      "@type": "LocalBusiness",
+      "name": "Мідні Дива",
+      "description": "Магазин унікальних подарунків з міді: електроформування квітів, листя, 3D-друкованих моделей.",
+      "address": { "@type": "PostalAddress", "addressLocality": "Чернігів", "addressCountry": "UA" },
+      "email": "contact@midnidiva.ua",
+      "telephone": "+380971234567",
+      "sameAs": ["https://instagram.com/midni.diva"]
     },
     {
-      "@type": "Question",
-      "name": "Чи можна зробити виріб на основі моєї 3D-моделі?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Так! Ми приймаємо готові STL-файли або створюємо модель з нуля."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Чи доставляєте за кордон?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Так, ми відправляємо замовлення по Україні та в інші країни."
-      }
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Скільки коштують мідні сувеніри?", "acceptedAnswer": { "@type": "Answer", "text": "Середня вартість — від 800 до 3000 грн." } },
+        { "@type": "Question", "name": "Чи можна зробити виріб на основі моєї 3D-моделі?", "acceptedAnswer": { "@type": "Answer", "text": "Так! Приймаємо STL-файли або створюємо модель з нуля." } },
+        { "@type": "Question", "name": "Чи доставляєте за кордон?", "acceptedAnswer": { "@type": "Answer", "text": "Так, відправляємо по Україні та в інші країни." } }
+      ]
     }
   ]
 }
